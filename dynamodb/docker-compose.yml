@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  dynamodb:
+    image:  amazon/dynamodb-local
+    container_name: my-dynamodb
+    hostname: dynamodb
+    restart: always
+    volumes:
+      -  ./my-dynamodb-data:/home/dynamodblocal/data # \\wsl$\docker-desktop\mnt\host\wsl\docker-desktop-data\data\docker
+    ports:
+      - 8000:8000
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/"
+
+
+# npm install -g dynamodb-admin
+
+# // For Windows
+# set DYNAMO_ENDPOINT=http://localhost:8000
+# dynamodb-admin
+# // For Mac/Linux
+# DYNAMO_ENDPOINT=http://localhost:8000 dynamodb-admin
